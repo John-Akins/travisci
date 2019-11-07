@@ -7,5 +7,6 @@ cache:
 services:
   - postgresql
 before_script:
-  - psql -c 'create database teamwork;' -U postgres
+  - psql -c "CREATE DATABASE testing_db;" -U postgres
+  - psql -c "CREATE USER postgres WITH PASSWORD 'root';" -U postgres 
 script: npm test

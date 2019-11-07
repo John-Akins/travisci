@@ -41,7 +41,7 @@ exports.queryWhere = (query) =>  {
 				reject({
 					error: "QueryError" + err.stack
 				})
-			}			
+			}
 			client.query(query, (err,result) => {
 				done()
 				if(err)

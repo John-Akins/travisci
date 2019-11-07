@@ -2,7 +2,11 @@ const Request = require("request")
 const server = require("../src/app")
 
 describe("admin create employee", () => {
-	expect(402).toBe(402)
+	it("should return 402 status code", () => {
+		expect(402).toBe(402) 
+	})
+})
+
 /*
 	describe("input existing email", () => {
 		const data = {}
@@ -112,4 +116,3 @@ describe("admin create employee", () => {
 		})
 	})
 */
-})
