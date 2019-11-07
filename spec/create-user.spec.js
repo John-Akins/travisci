@@ -10,7 +10,7 @@ describe("admin create employee", () => {
 				method: "POST",
 				headers: {
 					"content-type": "Application/JSON",
-					"Authorization": "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAxLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NzMwMzc2ODYsImV4cCI6MTU3MzEyNDA4Nn0.f4CqHBU6Nx7VP-ANi1JGp_eZKSfr4FfVBdTBRhJPZ0Q"
+					"Authorization": "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwMSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MzEzMzg3NSwiZXhwIjoxNTczMjIwMjc1fQ.Mt5lG-NmhZz3j-53C4vnLqz7ANtstK09cU1PL_D9lhE"
 				},
 				body: {
 					firstName: "akins",
@@ -46,7 +46,7 @@ describe("admin create employee", () => {
 				method: "POST",
 				headers: {
 					"content-type": "Application/JSON",
-					"Authorization": "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAxLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NzMwMzc2ODYsImV4cCI6MTU3MzEyNDA4Nn0.f4CqHBU6Nx7VP-ANi1JGp_eZKSfr4FfVBdTBRhJPZ0Q"
+					"Authorization": "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwMSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MzEzMzg3NSwiZXhwIjoxNTczMjIwMjc1fQ.Mt5lG-NmhZz3j-53C4vnLqz7ANtstK09cU1PL_D9lhE"
 				},
 				body: {
 					firstName: "",
@@ -80,7 +80,7 @@ describe("admin create employee", () => {
 				method: "POST",
 				headers: {
 					"content-type": "Application/JSON",
-					"Authorization": "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwMDAyLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNTczMDM3OTUyLCJleHAiOjE1NzMxMjQzNTJ9.UzggmgKtnXCo-2fDM9VB5mGNByy0n1c8o9MEnbkddJ4"
+					"Authorization": "token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMDAwMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE1NzMxMzM5MzUsImV4cCI6MTU3MzIyMDMzNX0.RjsCdo1T2bk_n1YJwP5MVT6o3yJgVX88yeDQjkPnFKA"
 				},
 				body: {
 					firstName: "sola",

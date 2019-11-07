@@ -1,7 +1,6 @@
 const express = require("express")
 const  { json } = require("body-parser")
 
-const articleRoutes = require("./routes/article")
 const authRoutes = require("./routes/auth")
 
 const app = express()
@@ -15,7 +14,6 @@ app.use((req, res, next) => {
 
 app.use(json())
 
-app.use("/api/v1/article", articleRoutes)
 app.use("/api/v1/auth", authRoutes)
 
 module.exports = app
