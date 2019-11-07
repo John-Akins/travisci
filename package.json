@@ -1,0 +1,33 @@
+{
+  "name": "travisci",
+  "version": "1.0.0",
+  "description": "secure Backend RESTful services",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/John-Akins/travisci.git"
+  },
+  "author": "John-Akins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/John-Akins/travisci/issues"
+  },
+  "homepage": "https://github.com/John-Akins/travisci#readme",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "jasmine": "^3.5.0"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7",
+    "pg": "^7.12.1",
+    "request": "^2.88.0"
+  }
+}
