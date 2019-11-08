@@ -2,6 +2,7 @@ const express = require("express")
 const  { json } = require("body-parser")
 
 const authRoutes = require("./routes/auth")
+const testRoutes = require("./routes/testhttp")
 
 const app = express()
 
@@ -15,5 +16,6 @@ app.use((req, res, next) => {
 app.use(json())
 
 app.use("/api/v1/auth", authRoutes)
+app.use("/api/v1/testhttp", testRoutes)
 
 module.exports = app

@@ -1,7 +1,7 @@
 const Request = require("request")
 const server = require("../src/app")
 const host = (process.env.address === undefined) ? "http://localhost:8080" : process.env.address
-
+console.log(host)
 describe("test http requests", () => {
 	const data = {}
 	beforeAll((done) => {
@@ -17,6 +17,7 @@ describe("test http requests", () => {
 			json: true
 		}, 
 		(error, response, body) => {
+			console.log(body)
 			data.status = response.statusCode
 			data.body = body
 			done()
@@ -26,7 +27,7 @@ describe("test http requests", () => {
 		expect(data.status).toBe(200)
 	})
 	it("should reply with hola", () => {
-		expect(data.body.response).toBe("hola")
+		expect(data.body.response).toBe("hiya")
 	})
 })
 

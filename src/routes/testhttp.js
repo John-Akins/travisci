@@ -15,6 +15,6 @@ const router = express.Router()
 * @apiSuccess (200) {Object} mixed `User` object
 */
 
-router.post("/testhttp", testCtrl.test)
+router.post("/", testCtrl.test)
 
 module.exports = router
