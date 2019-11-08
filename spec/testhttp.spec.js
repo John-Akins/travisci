@@ -17,7 +17,13 @@ describe("test http requests", () => {
 			json: true
 		}, 
 		(error, response, body) => {
+			console.log("error::::")
+			console.log(error)
+			console.log("response:::")
+			console.log(response)
+			console.log("body:::")
 			console.log(body)
+			
 			data.status = response.statusCode
 			data.body = body
 			done()
