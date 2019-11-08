@@ -12,4 +12,4 @@ services:
   - postgresql
 script:
   - npm run server 
-  - npm run test dev
+  - npm run test
