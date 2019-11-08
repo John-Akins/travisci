@@ -6,7 +6,7 @@ describe("test http requests", () => {
 	const data = {}
 	beforeAll((done) => {
 		Request.post({
-			url: "http://localhost:8080/api/v1/testhttp",
+			url: host+"/api/v1/testhttp",
 			method: "POST",
 			headers: {
 				"content-type": "Application/JSON"
