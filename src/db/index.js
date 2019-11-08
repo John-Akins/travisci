@@ -1,5 +1,5 @@
 const { Pool } = require("pg")
-const connectionString = "postgressql://postgres:root@localhost:5432/teamwork"
+const connectionString = (process.env.DB === undefined) ? "postgressql://postgres:root@localhost:5432/teamwork" : process.env.DB
 
 const pool = new Pool({connectionString : connectionString})
 // the pool will emit an error on behalf of any idle clients it contains

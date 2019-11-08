@@ -1,14 +1,38 @@
 const Request = require("request")
 const server = require("../src/app")
+const host = (process.env.address === undefined) ? "http://localhost:8080" : process.env.address
 
-describe("admin create employee", () => {
-	it("should return 402 status code", () => {
-		expect(402).toBe(402) 
+describe("test http requests", () => {
+	const data = {}
+	beforeAll((done) => {
+		Request.post({
+			url: "http://localhost:8080/api/v1/testhttp",
+			method: "POST",
+			headers: {
+				"content-type": "Application/JSON"
+			},
+			body: {
+				greeting: "Hola"
+			},
+			json: true
+		}, 
+		(error, response, body) => {
+			data.status = response.statusCode
+			data.body = body
+			done()
+		})
+	})
+	it("should return 200 status code", () => {
+		expect(data.status).toBe(200)
+	})
+	it("should reply with hola", () => {
+		expect(data.body.response).toBe("hola")
 	})
 })
 
-/*
-	describe("input existing email", () => {
+ /**
+  * 
+  * 	describe("input existing email", () => {
 		const data = {}
 		beforeAll((done) => {
 			Request.post({
@@ -82,7 +106,7 @@ describe("admin create employee", () => {
 		const data = {}
 		beforeAll((done) => {
 			Request.post({
-				url: "http://localhost:8080/api/v1/auth/create-user",
+				url: host+"/api/v1/auth/create-user",
 				method: "POST",
 				headers: {
 					"content-type": "Application/JSON",
@@ -115,4 +139,4 @@ describe("admin create employee", () => {
 			expect(data.body.error).toBe("Elevated access rights required")
 		})
 	})
-*/
+  */

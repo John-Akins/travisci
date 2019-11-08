@@ -4,7 +4,8 @@
   "description": "secure Backend RESTful services",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine",
+    "coverage": "npm run test --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
