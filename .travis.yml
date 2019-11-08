@@ -1,11 +1,15 @@
 before_script: 
   - "psql -c \"CREATE DATABASE testing_db;\" -U postgres"
-cache: 
-  directories: 
-    - $HOME/.npm
+cache:
+  directories:
+    - node_modules
 language: node_js
 node_js: 
   - stable
-script: "npm test"
+env:
+  - NODE_ENV=ci PORT=8080
 services: 
   - postgresql
+script:
+  - npm run server 
+  - npm run test dev

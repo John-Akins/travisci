@@ -1,6 +1,6 @@
 const Request = require("request")
 const server = require("../src/app")
-const host = "http://localhost:"+process.env.port
+const host = "http://localhost:8080"
 
 describe("test http requests", () => {
 	const data = {}
