@@ -6,8 +6,6 @@ cache:
   - "$HOME/.npm"
 services:
   - postgresql
-env:
-  - DB=postgres://postgres@localhost/teamwork
   before_script:
   - psql -c "CREATE DATABASE teamwork;" -U postgres 
 script: npm test
