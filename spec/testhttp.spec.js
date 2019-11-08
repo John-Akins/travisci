@@ -1,8 +1,7 @@
 const Request = require("request")
 const server = require("../src/app")
-const host = "http://localhost:8080"
+const host = "http://localhost:"+process.env.port
 
-console.log(process.env)
 describe("test http requests", () => {
 	const data = {}
 	beforeAll((done) => {
