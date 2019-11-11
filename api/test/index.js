@@ -1,11 +1,6 @@
-const chai = require('chai')
-require('chai/register-should')
-const dbMigration = require('../migrations')
-/**
- import chai from 'chai'
+import chai from 'chai'
 import 'chai/register-should'
 import dbMigration from '../migrations'
- */
 
 const { expect } = chai;
 
