@@ -15,7 +15,7 @@ env:
 
 before_script:
   - psql -c 'CREATE database teamwork_test;' -U postgres
-  - psql -c "CREATE USER postgres WITH PASSWORD root;" -U postgres
+  - psql -c "CREATE USER postgres WITH PASSWORD 'root';" -U postgres
   - npm run ./build/api/server.js
 
 script:
