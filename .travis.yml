@@ -1,4 +1,7 @@
 language: node_js
+env:
+  global:
+    - CC_TEST_REPORTER_ID=adbc752633b0ce313691735cc73d5f6ec817a3d25753182f1686d9a57c4b5981
 node_js:
   - "stable"
 cache:
@@ -6,6 +9,10 @@ cache:
     - "node_modules"
 install:
   - npm install
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 services:
   - postgresql
 
@@ -21,5 +28,9 @@ before_script:
 
 script:
   - npm run test
+
 after_success:
   - npm run coverage
+
+after_script:
+  - ./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT
