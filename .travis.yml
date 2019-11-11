@@ -1,14 +1,24 @@
-before_script: 
-  - "psql -c \"CREATE DATABASE teamwork;\" -U postgres"
+language: node_js
+node_js:
+  - "stable"
 cache:
   directories:
-    - node_modules
-language: node_js
-node_js: 
-  - stable
-env:
-  - NODE_ENV=ci PORT=8080
-services: 
+    - "node_modules"
+install:
+  - npm install
+services:
   - postgresql
+
+env:
+  global:
+  - NODE_ENV=test
+
+before_script:
+  - psql -c 'CREATE database teamwork_test;' -U postgres
+  - psql -c "CREATE USER postgres WITH PASSWORD root;" -U postgres
+  - npm run ./build/api/server.js
+
 script:
   - npm run test
+after_success:
+  - npm run coverage

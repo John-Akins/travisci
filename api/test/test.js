@@ -1,0 +1,30 @@
+import chai from 'chai'
+import chatHttp from 'chai-http'
+import 'chai/register-should'
+import app from '../app'
+
+chai.use(chatHttp);
+const { expect } = chai;
+
+describe('test http requests', () => {
+	const data = {}
+	before((done) => {
+		console.log("Hola")
+		chai.request(app)
+			.post('/api/v1/test/testhttp')
+			.set('Accept', 'application/json')
+			.send()
+			.end((error, response) => {
+				data.status = response.statusCode
+				data.body = response.body
+				done();
+			});
+	})
+
+	it("should reply with success", (done) => {
+		expect(data.status).to.equal(200)
+		data.body.should.have.property('status')
+									.eql('success')
+		done()
+	})
+})

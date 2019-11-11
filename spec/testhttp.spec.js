@@ -1,3 +1,4 @@
+/**
 const Request = require("request")
 const server = require("../src/app")
 const host = "http://localhost:8080"
@@ -36,10 +37,7 @@ describe("test http requests", () => {
 		expect(data.body.response).toBe("hiya")
 	})
 })
-
- /**
-  * 
-  * 	describe("input existing email", () => {
+ 	describe("input existing email", () => {
 		const data = {}
 		beforeAll((done) => {
 			Request.post({
