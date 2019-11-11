@@ -14,9 +14,9 @@ env:
   - NODE_ENV=test
 
 before_script:
-  - psql -c 'CREATE database teamwork_test;' -U test
+  - psql -c 'CREATE database teamwork_test;' -U postgres
   - psql -c "UPDATE USER test WITH PASSWORD 'root';" -U postgres
-  - npm run ./build/api/server.js
+  - npm run build
 
 script:
   - npm run test
