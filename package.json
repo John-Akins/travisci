@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rm -rf ./build && babel -d ./build/api ./api -s",
     "dev": "nodemon --exec babel-node ./build/api/server.js",
-    "dbmigrate": "set NODE_ENV=travis && nyc --require @babel/register  mocha .build/api/test/index.js --timeout 20000 --exit",
-    "test": "set NODE_ENV=travis && nyc --require @babel/register  mocha .build/api/test/test.js --timeout 20000 --exit",
+    "dbmigrate": "set NODE_ENV=travis && nyc --require @babel/register  mocha ./api/test/index.js --timeout 20000 --exit",
+    "test": "set NODE_ENV=travis && nyc --require @babel/register  mocha ./api/test/test.js --timeout 20000 --exit",
     "generate-lcov": "nyc report --reporter=text-lcov > 7lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
