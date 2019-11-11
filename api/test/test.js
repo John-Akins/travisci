@@ -1,5 +1,7 @@
 const chai = require('chai')
 require('chai/register-should')
+const chatHttp = require('chai-http')
+const app = require('../app')
 /**
 import chai from 'chai'
 import chatHttp from 'chai-http'

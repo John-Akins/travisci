@@ -1,5 +1,5 @@
 const { Pool } = require('pg')
-const configJson = require('../config/config');s
+const configJson = require('../config/config');
 
 
 /**
@@ -16,8 +16,10 @@ const { database, username, password, host } = configJson[env]
 const connectionString = `postgressql://${username}:${password}@${host}:5432/${database}`
 
 const pool = new Pool({connectionString : connectionString})
+
 // the pool will emit an error on behalf of any idle clients it contains
 // if a backend error or network partition happens
+
 pool.on('error', (err) => {
 	console.error('Unexpected error on idle client', err)
 	process.exit(-1)
