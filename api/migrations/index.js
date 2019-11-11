@@ -1,5 +1,4 @@
-const db = require('../db')
-//import db from "../db"
+import db from "../db"
 
 const dbMigration = {}
 
@@ -113,6 +112,4 @@ dbMigration.fillDummyData = () => {
     return dbMigration.hasCreatedTables;
 }
 
-//export default dbMigration
-
-module.exports = dbMigration
+export default dbMigration
