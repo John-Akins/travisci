@@ -7,11 +7,11 @@
     "build": "rm -rf ./build && babel -d ./build/api ./api -s",
     "dev": "nodemon --exec babel-node ./build/api/server.js",
     "dbmigrate": "set NODE_ENV=travis && nyc --require @babel/register  mocha ./api/test/index.js --timeout 20000 --exit",
-    "test": "set NODE_ENV=test && nyc --require @babel/register  mocha ./api/test/test.js --timeout 20000 --exit",
+    "test": "set NODE_ENV=travis && nyc --require @babel/register  mocha ./api/test/test.js --timeout 20000 --exit",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
-    "coverage": "nyc set NODE_ENV=test && nyc --require @babel/register  mocha ./api/test/test.js --timeout 20000 --exit && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
+    "coverage": "nyc set NODE_ENV=travis && nyc --require @babel/register  mocha ./api/test/test.js --timeout 20000 --exit && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
   },
   "repository": {
     "type": "git",
