@@ -1,4 +1,5 @@
-import db from "../db"
+const db = require("../db")
+//import db from "../db"
 
 const testController = {}
 	testController.test = (req, res) => {
@@ -29,4 +30,5 @@ const testController = {}
 								})		
 				}
 
-export default testController
+//export default testController
+module.exports = testController;

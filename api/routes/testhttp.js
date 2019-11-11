@@ -1,7 +1,10 @@
-import express from "express"
-import inputValidator from "../middleware/input-validator"
-import testController from "../controllers/test"
+const express = require("express")
+const testController = require("../controllers/test")
 
+/*
+import express from "express"
+import testController from "../controllers/test"
+*/
 const router = express.Router()
 
 /**
@@ -26,4 +29,5 @@ router.post("/testhttp", (req, res) => {
 //inputValidator.createUser, testController.createUser
 //router.post("/testhttp", testController.test)
 router.post("/testhttp", testController.test)
-export default router
+module.exports = router
+//export default router

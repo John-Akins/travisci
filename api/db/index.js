@@ -1,6 +1,12 @@
-import { Pool } from 'pg'
+const { Pool } = require('pg')
+const configJson = require('../config/config');s
+
+
+/**
+ * import { Pool } from 'pg'
 import configJson from '../config/config';
 
+ */
 
 
 const env = (! typeof process.env.NODE_ENV === undefined) ? 'development' : process.env.NODE_ENV.trim()
@@ -90,4 +96,5 @@ db.queryWhere = (query) =>  {
 	})
 }
 
-export default db
+//export default db
+module.exports = db
