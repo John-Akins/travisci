@@ -6,9 +6,13 @@ var _http = _interopRequireDefault(require("http"));
 
 var _app = _interopRequireDefault(require("./app"));
 
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
 // import Node native http package
-// returns a valid port 
+_dotenv["default"].config(); // returns a valid port 
 // whether port is passed as number or a string
+
+
 var normalizePort = function normalizePort(val) {
   var port = parseInt(val, 10);
 

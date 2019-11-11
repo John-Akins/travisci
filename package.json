@@ -2,9 +2,9 @@
   "name": "travisci",
   "version": "1.0.0",
   "description": "secure Backend RESTful services",
+  "type": "module",
   "main": "/index.js",
   "scripts": {
-    "start": "node ./api/server",
     "build": "rm -rf ./build && babel -d ./build/api ./api -s",
     "dev": "nodemon --exec babel-node ./build/api/server.js",
     "test": "set NODE_ENV=test && nyc --require @babel/register  mocha ./api/test/ --timeout 20000 --exit",

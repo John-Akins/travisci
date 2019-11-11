@@ -24,7 +24,7 @@ var router = _express["default"].Router();
 */
 
 
-router.post("/signin", _auth["default"].adminOnly, _inputValidator["default"].createUser, _auth2["default"].signin); //router.post("/signin", inputValidator.signin, authController.signin)
+router.post("/signin", _auth["default"].adminOnly, _inputValidator["default"].signin, _auth2["default"].signin); //router.post("/signin", inputValidator.signin, authController.signin)
 
 /**
 * @api {post} /api/auth/create-user

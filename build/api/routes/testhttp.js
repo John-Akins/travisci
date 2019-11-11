@@ -9,6 +9,8 @@ exports["default"] = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
+var _inputValidator = _interopRequireDefault(require("../middleware/input-validator"));
+
 var _test = _interopRequireDefault(require("../controllers/test"));
 
 var router = _express["default"].Router();
@@ -23,6 +25,15 @@ var router = _express["default"].Router();
 *
 * @apiSuccess (200) {Object} mixed `User` object
 */
+
+/*
+router.post("/testhttp", (req, res) => {
+    console.log(req.body)
+    return res.status(422).json(req.body)
+})
+*/
+//inputValidator.createUser, testController.createUser
+//router.post("/testhttp", testController.test)
 
 
 router.post("/testhttp", _test["default"].test);

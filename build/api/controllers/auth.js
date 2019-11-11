@@ -14,81 +14,72 @@ var jwt = require("jsonwebtoken");
 var _require = require("express-validator"),
     validationResult = _require.validationResult;
 
-var db = require("../db");
+var db = require("../db/index");
 
 var authController = {};
 
 authController.signin = function (req, res) {
-  res.status(422).json({
-    status: "error",
-    error: "errors.array()"
+  var errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    res.status(422).json({
+      status: "error",
+      error: errors.array()
+    });
+  }
+
+  var userEmail = req.body.email;
+  var userPassword = req.body.password;
+  var query = {
+    // give the query a unique name
+    name: "fetch-user",
+    text: "SELECT * FROM users WHERE email = $1",
+    values: [userEmail]
+  };
+  db.queryWhere(query).then(function (user) {
+    if (user[0] === undefined) {
+      return res.status(401).json({
+        status: "error",
+        error: "incorrect email or password"
+      });
+    } else {
+      var userId = user[0].userId;
+      var isAdmin = user[0].isAdmin;
+      bcrypt.compare(userPassword, user[0].password).then(function (valid) {
+        if (!valid) {
+          return res.status(401).json({
+            status: "error",
+            error: "incorrect email or password"
+          });
+        }
+
+        var token = jwt.sign({
+          userId: userId,
+          isAdmin: isAdmin
+        }, "$hdsJmzjQ7,E.m2y$12$1iTvLIHS60iMROUjADnu8tdiUguselTrWjDo6SxVf", {
+          expiresIn: "24h"
+        });
+        res.status(200).json({
+          status: "success",
+          data: {
+            token: token,
+            userId: user[0].userId,
+            jobRole: user[0].jobRole
+          }
+        });
+      })["catch"](function (error) {
+        res.status(401).json({
+          status: "error",
+          error: "incorrect email or password"
+        });
+      });
+    }
+  })["catch"](function (error) {
+    res.status(403).json({
+      status: "error",
+      error: "server error"
+    });
   });
-  /*		const errors = validationResult(req)
-  		if (!errors.isEmpty()) 
-  		{
-  			res.status(422).json({
-  				status: "error",
-  				error: errors.array()
-  			})				
-  		}
-  	
-  		const userEmail = req.body.email
-  		const userPassword = req.body.password	
-  	
-  		const query = {
-  			// give the query a unique name
-  			name: "fetch-user",
-  			text: "SELECT * FROM users WHERE email = $1",
-  			values: [userEmail]
-  		}
-  		db.queryWhere(query)
-  			.then((user) => {
-  				if(user[0] === undefined)
-  				{
-  					return res.status(401).json({
-  						status: "error",
-  						error: "incorrect email or password"
-  					})
-  				}
-  				else
-  				{
-  					const userId = user[0].userId 
-  					const isAdmin = user[0].isAdmin
-  					bcrypt.compare(userPassword, user[0].password)
-  						.then((valid) => {
-  							if(!valid)
-  							{
-  								return res.status(401).json({
-  									status: "error",
-  									error: "incorrect email or password"
-  								})
-  							} 
-  							const token = jwt.sign({userId: userId, isAdmin: isAdmin},"$hdsJmzjQ7,E.m2y$12$1iTvLIHS60iMROUjADnu8tdiUguselTrWjDo6SxVf",
-  								{expiresIn: "24h"}
-  							)
-  							res.status(200).json({
-  								status : "success",
-  								data : {
-  									token : token,
-  									userId: user[0].userId,
-  									jobRole: user[0].jobRole
-  								}
-  							})           						
-  						})
-  						.catch((error)  => {
-  							res.status(401).json({
-  								status: "error",
-  								error: "incorrect email or password",
-  							})                    
-  						})
-  				}
-  			})
-  			.catch((error) => {
-  				res.status(403).json({
-  					status: "error",
-  					error: "server error"
-  				})
-  			})	*/
 };
 
 authController.emailExists = function (email) {

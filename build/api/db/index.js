@@ -1,29 +1,42 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
+
 var _pg = require("pg");
 
-var connectionString = "postgressql://postgres:root@localhost:5432/teamwork";
+var _config = _interopRequireDefault(require("../config/config"));
+
+var env = !(0, _typeof2["default"])(process.env.NODE_ENV) === undefined ? 'development' : process.env.NODE_ENV.trim();
+var _configJson$env = _config["default"][env],
+    database = _configJson$env.database,
+    username = _configJson$env.username,
+    password = _configJson$env.password,
+    host = _configJson$env.host;
+var connectionString = "postgressql://".concat(username, ":").concat(password, "@").concat(host, ":5432/").concat(database);
 var pool = new _pg.Pool({
   connectionString: connectionString
 }); // the pool will emit an error on behalf of any idle clients it contains
 // if a backend error or network partition happens
 
-pool.on("error", function (err) {
-  console.error("Unexpected error on idle client", err);
+pool.on('error', function (err) {
+  console.error('Unexpected error on idle client', err);
   process.exit(-1);
 });
+var db = {};
 
-var queryAll = function queryAll(queryString) {
+db.query = function (queryString) {
   return new Promise(function (resolve, reject) {
     pool.connect(function (err, client, done) {
       if (err) {
         reject({
-          error: "QueryError" + err.stack
+          error: 'QueryError' + err.stack
         });
       }
 
@@ -33,7 +46,32 @@ var queryAll = function queryAll(queryString) {
 
         if (err) {
           reject({
-            error: "QueryError" + err.stack
+            error: 'QueryError' + err.stack
+          });
+        }
+
+        resolve(result);
+      });
+    });
+  });
+};
+
+db.queryAll = function (queryString) {
+  return new Promise(function (resolve, reject) {
+    pool.connect(function (err, client, done) {
+      if (err) {
+        reject({
+          error: 'QueryError' + err.stack
+        });
+      }
+
+      client.query(queryString, function (err, result) {
+        //call `done()` to release the client back to the pool
+        done();
+
+        if (err) {
+          reject({
+            error: 'QueryError' + err.stack
           });
         }
 
@@ -43,12 +81,12 @@ var queryAll = function queryAll(queryString) {
   });
 };
 
-var queryWhere = function queryWhere(query) {
+db.queryWhere = function (query) {
   return new Promise(function (resolve, reject) {
     pool.connect(function (err, client, done) {
       if (err) {
         reject({
-          error: "QueryError" + err.stack
+          error: 'QueryError' + err.stack
         });
       }
 
@@ -57,7 +95,7 @@ var queryWhere = function queryWhere(query) {
 
         if (err) {
           reject({
-            error: "QueryError" + err.stack
+            error: 'QueryError' + err.stack
           });
         }
 
@@ -67,9 +105,6 @@ var queryWhere = function queryWhere(query) {
   });
 };
 
-var _default = {
-  queryAll: queryAll,
-  queryWhere: queryWhere
-};
+var _default = db;
 exports["default"] = _default;
 //# sourceMappingURL=index.js.map

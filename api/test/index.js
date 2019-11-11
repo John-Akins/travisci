@@ -1,10 +1,7 @@
 import chai from 'chai'
-import chatHttp from 'chai-http'
 import 'chai/register-should'
-import app from '../app'
-import dbMigration from '../migrations/index'
+import dbMigration from '../migrations'
 
-chai.use(chatHttp);
 const { expect } = chai;
 
 describe('Database Migrations', () => {

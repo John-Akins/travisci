@@ -13,29 +13,19 @@ var _app = _interopRequireDefault(require("../app"));
 _chai["default"].use(_chaiHttp["default"]);
 
 var expect = _chai["default"].expect;
-console.log("Hola");
 describe('test http requests', function () {
-  console.log("Hola");
   var data = {};
   before(function (done) {
-    console.log("Hola");
-
-    _chai["default"].request(_app["default"]).post('/api/v1/test/testhttp').set('Accept', 'application/json').send({
-      greeting: "Hola"
-    }).end(function (error, response) {
-      console.log("error::::");
-      console.log(error);
-      console.log("response:::");
-      console.log(response.body);
+    _chai["default"].request(_app["default"]).post('/api/v1/test/testhttp').set('Accept', 'application/json').send().end(function (error, response) {
       data.status = response.statusCode;
       data.body = response.body;
       done();
     });
   });
-  it("should reply with hiya", function () {
-    console.log(data.status);
+  it("should reply with success", function (done) {
     expect(data.status).to.equal(200);
-    data.body.should.have.property('response').eql('hiya');
+    data.body.should.have.property('status').eql('success');
+    done();
   });
 });
 //# sourceMappingURL=test.js.map

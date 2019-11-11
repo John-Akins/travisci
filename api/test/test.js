@@ -9,7 +9,6 @@ const { expect } = chai;
 describe('test http requests', () => {
 	const data = {}
 	before((done) => {
-		console.log("Hola")
 		chai.request(app)
 			.post('/api/v1/test/testhttp')
 			.set('Accept', 'application/json')
